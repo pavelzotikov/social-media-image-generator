@@ -25,6 +25,11 @@ class Generator
         $this->magnetic = new Magnetic($this->layers, $this->layers_with_names);
     }
 
+    public function getLayers(): array
+    {
+        return $this->layers;
+    }
+
     public function loadLayers(array $array): self
     {
         $this->layers = [];

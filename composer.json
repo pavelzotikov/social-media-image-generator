@@ -3,6 +3,7 @@
   "description": "Engine for Social Media Image Generator",
   "keywords": ["social-media-image-generator", "social", "media", "image"],
   "license": "MIT",
+  "homepage": "https://github.com/pavelzotikov/social-media-image-generator",
   "authors": [
     {
       "name": "Pavel Zotikov",
@@ -10,7 +11,11 @@
     }
   ],
   "require": {
-    "php": ">=7.1.0"
+    "php": ">=7.1.0",
+    "ext-imagick": "*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^7"
   },
   "autoload": {
     "psr-0": { "SocialMediaImageGenerator": "src/" }
