@@ -153,7 +153,8 @@ class TypesTest extends TestCase
             'name' => $image->getName(),
             'path' => $image->getPath(),
             'width' => $image->getWidth(),
-            'height' => $image->getHeight()
+            'height' => $image->getHeight(),
+            'fill' => $image->getFill()
         ];
 
         $image_gc = new ImageGravityCenter($data);
@@ -162,6 +163,7 @@ class TypesTest extends TestCase
         $this->assertSame($data['path'], $image_gc->getPath());
         $this->assertSame($data['width'], $image_gc->getWidth());
         $this->assertSame($data['height'], $image_gc->getHeight());
+        $this->assertSame($data['fill'], $image_gc->getFill());
 
         $image_r = $image_gc->getImage();
 
@@ -203,7 +205,18 @@ class TypesTest extends TestCase
         $this->assertNotEmpty($draw);
         $this->assertInstanceOf(\ImagickDraw::class, $draw);
 
-        $this->assertInstanceOf(Font::class, $draw->getFont());
+        $this->assertInstanceOf(Font::class, $text->getFont());
+        $this->assertInstanceOf(Font::class, $text->getUnderline());
+
+        $underline_data = [
+            'color' => '#000',
+            'space' => rand(3, 6)
+        ];
+
+        $text->setUnderline($underline_data);
+        $this->assertInstanceOf(Font::class, $text->getUnderline());
+
+        $this->assertNotEmpty($text->getUnderlineDraws());
 
         return $text;
     }
