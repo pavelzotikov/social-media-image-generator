@@ -11,7 +11,7 @@ use SocialMediaImageGenerator\Properties\Underline;
 class PropertiesTest extends TestCase
 {
 
-    public function testTransform()
+    public function testTransform(): Transform
     {
         $data = [
             'top_left' => [rand(0, 100), rand(0, 100)],
@@ -33,9 +33,11 @@ class PropertiesTest extends TestCase
 
         $this->assertSame($data['bottom_right'], [$x3, $y3]);
         $this->assertSame($data['bottom_left'], [$x4, $y4]);
+
+        return $transform;
     }
 
-    public function testBlackout()
+    public function testBlackout(): Blackout
     {
         $data = [
             'color' => '#fff',
@@ -46,9 +48,11 @@ class PropertiesTest extends TestCase
 
         $this->assertSame($data['color'], $blackout->getColor());
         $this->assertSame($data['opacity'], $blackout->getOpacity());
+
+        return $blackout;
     }
 
-    public function testFont()
+    public function testFont(): Font
     {
         $data = [
             'size' => rand(18, 56),
@@ -63,9 +67,11 @@ class PropertiesTest extends TestCase
         $this->assertSame($data['color'], $font->getColor());
         $this->assertSame($data['interline_spacing'], $font->getInterlineSpacing());
         $this->assertSame($data['antialias'], $font->getAntialias());
+
+        return $font;
     }
 
-    public function testMagnetic()
+    public function testMagnetic(): Magnetic
     {
         $data = [
             'to_layer' => 'background',
@@ -86,9 +92,10 @@ class PropertiesTest extends TestCase
         $this->assertSame($data['right'], $magnetic->getRight());
         $this->assertSame($data['bottom'], $magnetic->getBottom());
 
+        return $magnetic;
     }
 
-    public function testUnderline()
+    public function testUnderline(): Underline
     {
         $data = [
             'color' => '#000',
@@ -99,6 +106,8 @@ class PropertiesTest extends TestCase
 
         $this->assertSame($data['color'], $underline->getColor());
         $this->assertSame($data['space'], $underline->getSpace());
+
+        return $underline;
     }
 
 }
