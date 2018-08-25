@@ -9,6 +9,9 @@ install:
   - travis_retry composer self-update
   - travis_retry composer install --no-interaction --no-suggest --prefer-dist --dev
 
+before_script:
+  - pecl install imagick
+
 script:
   - vendor/bin/phpunit --coverage-clover=coverage.xml
 
