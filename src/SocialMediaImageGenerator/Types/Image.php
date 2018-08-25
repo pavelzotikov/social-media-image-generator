@@ -120,20 +120,6 @@ class Image extends AbstractType
         return $this->transform;
     }
 
-    private function angle($a, $b, $c)
-    {
-       $x1 = $a[0] - $b[0];
-       $x2 = $c[0] - $b[0];
-
-       $y1 = $a[1] - $b[1];
-       $y2 = $c[1] - $b[1];
-
-       $d1 = sqrt($x1 * $x1 + $y1 * $y1);
-       $d2 = sqrt($x2 * $x2 + $y2 * $y2);
-
-       return rad2deg(acos(($x1 * $x2 + $y1 * $y2) / ($d1 * $d2)));
-    }
-
     public function getTransformCoordinates(): array
     {
         list($x1,$y1,$x2,$y2,$x3,$y3,$x4,$y4) = $this->transform->getCoordinates();

@@ -96,16 +96,31 @@ class TypesTest extends TestCase
             'path' => 'https://leonardo.osnova.io/667c5413-8191-0f34-3a36-e7405c3aa76d/',
             'width' => $this->width,
             'height' => $this->height,
+            'round_corners' => rand(2, 10),
+            'fill' => '#fff',
             'transform' => $transform,
             'magnetic' => $magnetic
         ];
 
         $image_class = new Image($data);
+        $this->assertInstanceOf(Transform::class, $image_class->getTransform());
+
+        $transform_data = [
+            'top_left' => [rand(0, 100), rand(0, 100)],
+            'top_right' => [rand(100, 300), rand(100, 300)],
+            'bottom_right' => [rand(100, 300), rand(100, 300)],
+            'bottom_left' => [rand(0, 100), rand(100, 300)]
+        ];
+
+        $image_class->setTransform($transform_data);
+        $this->assertInstanceOf(Transform::class, $image_class->getTransform());
 
         $this->assertSame($data['name'], $image_class->getName());
         $this->assertSame($data['path'], $image_class->getPath());
         $this->assertSame($data['width'], $image_class->getWidth());
         $this->assertSame($data['height'], $image_class->getHeight());
+        $this->assertSame($data['round_corners'], $image_class->getRoundCorners());
+        $this->assertSame($data['fill'], $image_class->getFill());
 
         $image = $image_class->getImage();
 
@@ -113,7 +128,14 @@ class TypesTest extends TestCase
         $this->assertInstanceOf(\Imagick::class, $image);
 
         $this->assertInstanceOf(Magnetic::class, $image_class->getMagnetic());
-        $this->assertInstanceOf(Transform::class, $image_class->getTransform());
+
+        if ($image_class->isTransform()) {
+            $image_class->setTransform($transform->setAutoWidth(false)->setAutoHeight(true));
+            $this->assertNotEmpty($image_class->getTransformCoordinates());
+
+            $image_class->setTransform($transform->setAutoWidth(true)->setAutoHeight(false));
+            $this->assertNotEmpty($image_class->getTransformCoordinates());
+        }
 
         return $image_class;
     }
