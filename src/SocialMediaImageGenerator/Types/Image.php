@@ -128,7 +128,7 @@ class Image extends AbstractType
         $layer = $this->layer;
 
         if ($this->transform->getAutoWidth()) {
-            $height = sqrt((pow($x4, 2) - pow($x1, 2)) + (pow($y4, 2) - pow($y1, 2)));
+            $height = sqrt(pow($x4 - $x1, 2) + pow($y4 - $y1, 2));
             $width = ($layer->getImageWidth() * $height) / $layer->getImageHeight();
 
             $top_line_width = sqrt(pow($x2 - $x1, 2) + pow($y2 - $y1, 2));
@@ -145,7 +145,8 @@ class Image extends AbstractType
         }
 
         if ($this->transform->getAutoHeight()) {
-            $width = sqrt((pow($x2, 2) - pow($x1, 2)) + (pow($y2, 2) - pow($y1, 2)));
+
+            $width = sqrt(pow($x2 - $x1, 2) + pow($y2 - $y1, 2));
             $height = ($layer->getImageHeight() * $width) / $layer->getImageWidth();
 
             $left_line_width = sqrt(pow($x4 - $x1, 2) + pow($y4 - $y1, 2));
