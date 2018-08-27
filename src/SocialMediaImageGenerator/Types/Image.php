@@ -23,6 +23,8 @@ class Image extends AbstractType
 
         $layer = new \Imagick();
         $layer->readImage($this->getPath());
+        $layer->setImageResolution(300, 300);
+        $layer->resampleImage(300, 300, \Imagick::FILTER_LANCZOS, 0);
 
         if (!$no_resize && $this->getWidth() && $this->getHeight()) {
             $layer->adaptiveResizeImage($this->getWidth(), $this->getHeight(), false);

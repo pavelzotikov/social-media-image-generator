@@ -20,6 +20,7 @@ class Generator
     public function __construct(int $width, int $height, string $color)
     {
         $this->image = new \Imagick();
+        $this->image->setResolution(300, 300);
         $this->image->newImage($width, $height, $color);
 
         $this->magnetic = new Magnetic($this->layers, $this->layers_with_names);
@@ -99,7 +100,11 @@ class Generator
             }
         }
 
+        $this->image->normalizeImage();
+        $this->image->unsharpMaskImage(0, 0.5, 1, 0.05);
+
         $this->image->setImageFormat('JPG');
+        $this->image->setImageCompression(\Imagick::COMPRESSION_JPEG);
         $this->image->setImageCompressionQuality(95);
 
         return $this->image->getImageBlob();
