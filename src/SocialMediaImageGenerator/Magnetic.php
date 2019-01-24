@@ -204,22 +204,22 @@ class Magnetic
 
             if ($layer->getImage() instanceof \Imagick) {
 
-                $layer->setY(
+                $layer->setY((int) (
                     $this->to_layer->getY() + $this->to_layer->getImage()->getImageHeight() / 2
                     - $layer->getImage()->getImageHeight() / 2
-                );
+                ));
 
             } else {
 
                 $im = new \Imagick();
                 $layer_info = $im->queryFontMetrics($layer->getImage(), $layer->getText());
 
-                $layer->setY(
+                $layer->setY((int) (
                     $this->to_layer->getY()
                     + (int) ($this->to_layer->getImage()->getImageHeight() / 2)
                     - (int) ($layer->getCurrentNumberOfLines() * ($layer_info['ascender'] - $layer_info['descender']) / 2)
                     + (int) ($layer_info['ascender'])
-                );
+                ));
 
             }
 
@@ -230,12 +230,12 @@ class Magnetic
                 $im = new \Imagick();
                 $to_layer_info = $im->queryFontMetrics($this->to_layer->getImage(), $this->to_layer->getText());
 
-                $layer->setY(
+                $layer->setY((int) (
                     $this->to_layer->getY()
                     + (int) (($this->to_layer->getCurrentNumberOfLines() * ($to_layer_info['ascender'] - $to_layer_info['descender']) + $to_layer_info['descender']) / 2)
                     - (int) ($layer->getImage()->getImageHeight() / 2)
                     - (int) ($to_layer_info['ascender'])
-                );
+                ));
 
             } else {
 
@@ -243,11 +243,11 @@ class Magnetic
                 $layer_info = $im->queryFontMetrics($layer->getImage(), $layer->getText());
                 $to_layer_info = $im->queryFontMetrics($this->to_layer->getImage(), $this->to_layer->getText());
 
-                $layer->setY(
+                $layer->setY((int) (
                     $this->to_layer->getY()
                     + (int) (($this->to_layer->getCurrentNumberOfLines() * ($to_layer_info['ascender'] - $to_layer_info['descender']) + $to_layer_info['descender']) / 2)
                     - (int) (($layer->getCurrentNumberOfLines() * ($layer_info['ascender'] - $layer_info['descender']) + $layer_info['descender']) / 2)
-                );
+                ));
 
             }
 
@@ -264,18 +264,18 @@ class Magnetic
 
             if ($layer->getImage() instanceof \Imagick) {
 
-                $layer->setY(
+                $layer->setY((int) (
                     $this->to_layer->getY() + (int) $layer->getMagnetic()->getTop()
-                );
+                ));
 
             } elseif ($layer->getImage() instanceof \ImagickDraw) {
 
                 $im = new \Imagick();
                 $layer_info = $im->queryFontMetrics($layer->getImage(), $layer->getText());
 
-                $layer->setY(
+                $layer->setY((int) (
                     $this->to_layer->getY() + (int) $layer_info['ascender'] + (int) $layer->getMagnetic()->getTop()
-                );
+                ));
 
             }
 
@@ -286,17 +286,17 @@ class Magnetic
                 $im = new \Imagick();
                 $to_layer_info = $im->queryFontMetrics($this->to_layer->getImage(), $this->to_layer->getText());
 
-                $layer->setY(
+                $layer->setY((int) (
                     $this->to_layer->getY()
                     - (int) $to_layer_info['ascender']
                     + (int) $layer->getMagnetic()->getTop()
-                );
+                ));
 
             } elseif ($layer->getImage() instanceof \ImagickDraw) {
 
-                $layer->setY(
+                $layer->setY((int) (
                     $this->to_layer->getY() + (int) $layer->getMagnetic()->getTop()
-                );
+                ));
 
             }
 
@@ -311,21 +311,21 @@ class Magnetic
 
             if ($layer->getImage() instanceof \Imagick) {
 
-                $layer->setY(
+                $layer->setY((int) (
                     $this->to_layer->getY() + (int) $this->to_layer->getImage()->getImageHeight() + (int) $layer->getMagnetic()->getBottom()
-                );
+                ));
 
             } elseif ($layer->getImage() instanceof \ImagickDraw) {
 
                 $im = new \Imagick();
                 $layer_info = $im->queryFontMetrics($layer->getImage(), $layer->getText());
 
-                $layer->setY(
+                $layer->setY((int) (
                     $this->to_layer->getY()
                     + (int) $this->to_layer->getImage()->getImageHeight()
                     + (int) $layer_info['ascender']
                     + (int) $layer->getMagnetic()->getBottom()
-                );
+                ));
 
             }
 
@@ -336,23 +336,23 @@ class Magnetic
                 $im = new \Imagick();
                 $to_layer_info = $im->queryFontMetrics($this->to_layer->getImage(), $this->to_layer->getText());
 
-                $layer->setY(
+                $layer->setY((int) (
                     $this->to_layer->getY()
                     + (int) ($this->to_layer->getCurrentNumberOfLines() * ($to_layer_info['ascender'] - $to_layer_info['descender']) + $to_layer_info['descender'])
                     + (int) $layer->getMagnetic()->getBottom()
                     - (int) $to_layer_info['ascender']
-                );
+                ));
 
             } elseif ($layer->getImage() instanceof \ImagickDraw) {
 
                 $im = new \Imagick();
                 $to_layer_info = $im->queryFontMetrics($this->to_layer->getImage(), $this->to_layer->getText());
 
-                $layer->setY(
+                $layer->setY((int) (
                     $this->to_layer->getY()
                     + (int) ($this->to_layer->getCurrentNumberOfLines() * ($to_layer_info['ascender'] - $to_layer_info['descender']) + $to_layer_info['descender'])
                     + (int) $layer->getMagnetic()->getBottom()
-                );
+                ));
 
             }
 
