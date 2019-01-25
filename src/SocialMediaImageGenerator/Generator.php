@@ -101,7 +101,7 @@ class Generator
         }
 
         // $this->image->normalizeImage();
-        $this->image->unsharpMaskImage(0, 0.5, 1, 0.05);
+        // $this->image->unsharpMaskImage(0, 0.5, 1, 0.05);
 
         $this->image->setImageFormat('JPG');
         $this->image->setImageCompression(\Imagick::COMPRESSION_JPEG);
