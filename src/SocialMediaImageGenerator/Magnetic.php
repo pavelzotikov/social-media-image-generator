@@ -80,7 +80,7 @@ class Magnetic
                 $layer_info = $im->queryFontMetrics($layer->$this->getImage(), $layer->getText());*/
 
                 $layer->setX(
-                    $this->to_layer->getX() + ($this->to_layer->getImage()->getImageWidth() / 2)
+                    (int) ($this->to_layer->getX() + $this->to_layer->getImage()->getImageWidth() / 2)
                 );
 
                 /*if ($layer->getAlignment() === \Imagick::ALIGN_LEFT) {
