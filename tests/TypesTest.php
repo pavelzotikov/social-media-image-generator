@@ -208,16 +208,6 @@ class TypesTest extends TestCase
         $this->assertInstanceOf(Font::class, $text->getFont());
         $this->assertInstanceOf(Underline::class, $text->getUnderline());
 
-        $underline_data = [
-            'color' => '#000',
-            'space' => rand(3, 6)
-        ];
-
-        $text->setUnderline($underline_data);
-        $this->assertInstanceOf(Underline::class, $text->getUnderline());
-
-        $this->assertNotEmpty($text->getUnderlineDraws());
-
         return $text;
     }
 }
