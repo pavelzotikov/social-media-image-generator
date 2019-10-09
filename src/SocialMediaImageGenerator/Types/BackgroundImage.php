@@ -45,7 +45,7 @@ class BackgroundImage extends Background
 
             if (method_exists($blackout_draw, 'setImageAlpha')) {
                 $blackout_draw->setImageAlpha($this->getBlackout()->getOpacity());
-            } else {
+            } elseif (method_exists($blackout_draw, 'setImageOpacity')) {
                 $blackout_draw->setImageOpacity($this->getBlackout()->getOpacity());
             }
 

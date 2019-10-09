@@ -175,7 +175,7 @@ class TypesTest extends TestCase
 
     /**
      * @depends PropertiesTest::testFont
-     * @depends PropertiesTest::testUnderline()
+     * @depends PropertiesTest::testUnderline
      *
      * @param Font $font
      * @param Underline $underline
@@ -206,7 +206,7 @@ class TypesTest extends TestCase
         $this->assertInstanceOf(\ImagickDraw::class, $draw);
 
         $this->assertInstanceOf(Font::class, $text->getFont());
-        $this->assertInstanceOf(Font::class, $text->getUnderline());
+        $this->assertInstanceOf(Underline::class, $text->getUnderline());
 
         $underline_data = [
             'color' => '#000',
@@ -214,11 +214,10 @@ class TypesTest extends TestCase
         ];
 
         $text->setUnderline($underline_data);
-        $this->assertInstanceOf(Font::class, $text->getUnderline());
+        $this->assertInstanceOf(Underline::class, $text->getUnderline());
 
         $this->assertNotEmpty($text->getUnderlineDraws());
 
         return $text;
     }
-
 }
