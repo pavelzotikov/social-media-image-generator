@@ -71,5 +71,4 @@ class Font extends Loader
 
         return $this;
     }
-
 }

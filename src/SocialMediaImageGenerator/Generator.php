@@ -8,7 +8,6 @@ use SocialMediaImageGenerator\Types\AbstractType;
 
 class Generator
 {
-
     private $image;
     private $magnetic;
 
@@ -38,9 +37,7 @@ class Generator
         $this->layers_counter = 0;
 
         foreach ($array as $key => $value) {
-
             if (isset($value['type'])) {
-
                 $type = $value['type'];
 
                 $reflection_class = new \ReflectionClass($this);
@@ -54,7 +51,6 @@ class Generator
                         /** @var AbstractType $layer */
                         $layer = new $class_path($value['properties']);
                         $this->addLayer($layer);
-
                     }
                 }
             }
@@ -109,5 +105,4 @@ class Generator
 
         return $this->image->getImageBlob();
     }
-
 }

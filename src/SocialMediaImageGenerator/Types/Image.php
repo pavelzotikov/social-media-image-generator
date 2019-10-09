@@ -6,7 +6,6 @@ use SocialMediaImageGenerator\Properties\Transform;
 
 class Image extends AbstractType
 {
-
     protected $path = '';
     protected $fill = '';
 
@@ -31,7 +30,16 @@ class Image extends AbstractType
         }
 
         if ($this->getRoundCorners()) {
-            $layer->roundCorners($this->getRoundCorners(), $this->getRoundCorners());
+            $mask = new \Imagick();
+            $mask->newImage($this->getWidth(), $this->getHeight(), new \ImagickPixel('transparent'), 'png');
+
+            $shape = new \ImagickDraw();
+            $shape->setFillColor(new \ImagickPixel('black'));
+            $shape->roundRectangle(0, 0, $this->getWidth(), $this->getHeight(), $this->getRoundCorners(), $this->getRoundCorners());
+
+            $mask->drawImage($shape);
+
+            $layer->compositeImage($mask, \Imagick::COMPOSITE_COPYOPACITY, 0, 0);
         }
 
         if ($this->getFill()) {
@@ -124,7 +132,7 @@ class Image extends AbstractType
 
     public function getTransformCoordinates(): array
     {
-        list($x1,$y1,$x2,$y2,$x3,$y3,$x4,$y4) = $this->transform->getCoordinates();
+        list($x1, $y1, $x2, $y2, $x3, $y3, $x4, $y4) = $this->transform->getCoordinates();
 
         /** @var \Imagick $layer */
         $layer = $this->layer;
@@ -147,7 +155,6 @@ class Image extends AbstractType
         }
 
         if ($this->transform->getAutoHeight()) {
-
             $width = sqrt(pow($x2 - $x1, 2) + pow($y2 - $y1, 2));
             $height = ($layer->getImageHeight() * $width) / $layer->getImageWidth();
 
@@ -179,5 +186,4 @@ class Image extends AbstractType
     {
         return $this->transform instanceof Transform;
     }
-
 }

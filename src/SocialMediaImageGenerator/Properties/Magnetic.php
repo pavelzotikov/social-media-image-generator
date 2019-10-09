@@ -6,7 +6,6 @@ use SocialMediaImageGenerator\Loader;
 
 class Magnetic extends Loader
 {
-
     protected $to_layer;
 
     protected $left;
@@ -100,5 +99,4 @@ class Magnetic extends Loader
 
         return $this;
     }
-
 }

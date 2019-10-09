@@ -4,7 +4,6 @@ namespace SocialMediaImageGenerator\Types;
 
 class ImageGravityCenter extends Image
 {
-
     public function getImage(bool $no_resize = true): \Imagick
     {
         if ($this->layer) {
@@ -29,5 +28,4 @@ class ImageGravityCenter extends Image
 
         return $layer;
     }
-
 }

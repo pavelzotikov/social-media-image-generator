@@ -6,7 +6,6 @@ use SocialMediaImageGenerator\Properties\Blackout;
 
 class BackgroundImage extends Background
 {
-
     protected $path = '';
 
     protected $blackout;
@@ -43,7 +42,13 @@ class BackgroundImage extends Background
         if ($this->getBlackout()) {
             $blackout_draw = new \Imagick();
             $blackout_draw->newImage($width, $height, new \ImagickPixel($this->getBlackout()->getColor()));
-            $blackout_draw->setImageOpacity($this->getBlackout()->getOpacity());
+
+            if (method_exists($blackout_draw, 'setImageAlpha')) {
+                $blackout_draw->setImageAlpha($this->getBlackout()->getOpacity());
+            } else {
+                $blackout_draw->setImageOpacity($this->getBlackout()->getOpacity());
+            }
+
             $layer->compositeImage($blackout_draw, \Imagick::COMPOSITE_HARDLIGHT, 0, 0);
         }
 
@@ -79,5 +84,4 @@ class BackgroundImage extends Background
     {
         return $this->blackout;
     }
-
 }

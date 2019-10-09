@@ -4,7 +4,6 @@ namespace SocialMediaImageGenerator;
 
 class Loader
 {
-
     public function __construct(array $data = [])
     {
         foreach ($data as $func => $value) {
@@ -18,7 +17,6 @@ class Loader
                 } else {
                     $this->{$func_name}($value);
                 }
-
             }
         }
     }
@@ -27,5 +25,4 @@ class Loader
     {
         return sprintf('%s%s', $prefix, implode('', array_map('ucfirst', explode('_', $field))));
     }
-
 }

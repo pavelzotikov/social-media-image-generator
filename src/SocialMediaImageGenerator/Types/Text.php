@@ -7,7 +7,6 @@ use SocialMediaImageGenerator\Properties\Underline as UnderlineProperties;
 
 class Text extends AbstractType
 {
-
     const ALIGN_LEFT = 1;
     const ALIGN_CENTER = 2;
     const ALIGN_RIGHT = 3;
@@ -184,10 +183,8 @@ class Text extends AbstractType
     public function getUnderlineDraws(): array
     {
         if (!$this->underline_draws) {
-
             $metrics = $this->getMetricsForEachOfLine($this->getText(), $this->layer);
             foreach ($metrics as $line_number => $line_info) {
-
                 $underline_draw = new \ImagickDraw();
 
                 if ($this->getUnderline()->getColor() !== null) {
@@ -227,5 +224,4 @@ class Text extends AbstractType
     {
         return $this->current_number_of_lines;
     }
-
 }

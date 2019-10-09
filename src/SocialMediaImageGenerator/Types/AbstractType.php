@@ -90,5 +90,4 @@ abstract class AbstractType extends Loader
     {
         return $this->text;
     }
-
 }

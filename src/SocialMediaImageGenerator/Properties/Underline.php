@@ -32,5 +32,4 @@ class Underline extends Loader
 
         return $this;
     }
-
 }

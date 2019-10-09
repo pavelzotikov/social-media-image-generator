@@ -32,5 +32,4 @@ class Blackout extends Loader
 
         return $this;
     }
-
 }
