@@ -45,6 +45,8 @@ class BackgroundImage extends Background
 
             if (method_exists($blackout_draw, 'setImageAlpha')) {
                 $blackout_draw->setImageAlpha($this->getBlackout()->getOpacity());
+            } elseif (method_exists($blackout_draw, 'setImageOpacity')) {
+                $blackout_draw->setImageOpacity($this->getBlackout()->getOpacity());
             }
 
             $layer->compositeImage($blackout_draw, \Imagick::COMPOSITE_HARDLIGHT, 0, 0);
