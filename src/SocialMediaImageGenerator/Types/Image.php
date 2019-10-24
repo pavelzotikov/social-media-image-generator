@@ -31,11 +31,11 @@ class Image extends AbstractType
 
         if ($this->getRoundCorners()) {
             $mask = new \Imagick();
-            $mask->newImage($this->getWidth(), $this->getHeight(), new \ImagickPixel('transparent'), 'png');
+            $mask->newImage($this->getWidth(), $this->getHeight(), new \ImagickPixel('transparent'));
 
             $shape = new \ImagickDraw();
             $shape->setFillColor(new \ImagickPixel('black'));
-            $shape->roundRectangle(0, 0, $this->getWidth(), $this->getHeight(), $this->getRoundCorners(), $this->getRoundCorners());
+            $shape->roundRectangle(0, 0, $this->getWidth() - 1, $this->getHeight() - 1, $this->getRoundCorners(), $this->getRoundCorners());
 
             $mask->drawImage($shape);
 
