@@ -5,6 +5,7 @@ namespace SocialMediaImageGenerator\Types;
 class Background extends AbstractType
 {
     protected $color = '#FFFFFF';
+    protected $layer;
 
     public function getImage(): \Imagick
     {

@@ -42,7 +42,7 @@ class Generator
 
                 $reflection_class = new \ReflectionClass($this);
 
-                $class = (new Loader)->getFuncByString($type);
+                $class = (new Loader())->getFuncByString($type);
                 $class_path = sprintf('%s\Types\%s', $reflection_class->getNamespaceName(), $class);
 
                 if (\class_exists($class_path)) {
@@ -94,15 +94,42 @@ class Generator
                 case $layer === null:
                     break;
             }
-        }
 
-        // $this->image->normalizeImage();
-        // $this->image->unsharpMaskImage(0, 0.5, 1, 0.05);
+            $item->clear();
+        }
 
         $this->image->setImageFormat('JPG');
         $this->image->setImageCompression(\Imagick::COMPRESSION_JPEG);
         $this->image->setImageCompressionQuality(95);
 
         return $this->image->getImageBlob();
+    }
+
+    public function clear(): void
+    {
+        if ($this->image instanceof \Imagick) {
+            $this->image->clear();
+            $this->image->destroy();
+        }
+
+        foreach ($this->layers as $layer) {
+            if ($layer instanceof AbstractType && $layer->getImage() instanceof \Imagick) {
+                $layer->getImage()->clear();
+                $layer->getImage()->destroy();
+            }
+        }
+
+        if ($this->magnetic instanceof Magnetic) {
+            $this->magnetic->clear();
+        }
+
+        $this->layers = [];
+        $this->layers_with_names = [];
+        $this->layers_counter = 0;
+    }
+
+    public function __destruct()
+    {
+        $this->clear();
     }
 }

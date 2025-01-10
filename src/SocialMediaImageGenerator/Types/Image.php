@@ -40,12 +40,19 @@ class Image extends AbstractType
             $mask->drawImage($shape);
 
             $layer->compositeImage($mask, \Imagick::COMPOSITE_COPYOPACITY, 0, 0);
+
+            $mask->clear();
+            $mask->destroy();
         }
 
         if ($this->getFill()) {
             $layer_colorize = new \Imagick();
             $layer_colorize->newImage($layer->getImageWidth(), $layer->getImageHeight(), $this->getFill());
             $layer_colorize->compositeImage($layer, \Imagick::COMPOSITE_COPYOPACITY, 0, 0);
+
+            $layer->clear();
+            $layer->destroy();
+
             $layer = $layer_colorize;
         }
 
@@ -171,9 +178,6 @@ class Image extends AbstractType
             $y4 = (int) (($y4 - $y1) * $left_koef) + $y1;
         }
 
-        /**
-         * x1 y1 move to x2, y2
-         */
         return [
             0, 0, $x1, $y1, // top left
             0, $layer->getImageHeight(), $x4, $y4, // bottom left

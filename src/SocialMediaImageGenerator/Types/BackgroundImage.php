@@ -7,7 +7,6 @@ use SocialMediaImageGenerator\Properties\Blackout;
 class BackgroundImage extends Background
 {
     protected $path = '';
-
     protected $blackout;
 
     public function getImage(): \Imagick
@@ -50,6 +49,9 @@ class BackgroundImage extends Background
             }
 
             $layer->compositeImage($blackout_draw, \Imagick::COMPOSITE_HARDLIGHT, 0, 0);
+
+            $blackout_draw->clear();
+            $blackout_draw->destroy();
         }
 
         $this->layer = $layer;

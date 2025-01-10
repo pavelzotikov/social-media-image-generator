@@ -90,4 +90,19 @@ abstract class AbstractType extends Loader
     {
         return $this->text;
     }
+
+    public function clear(): void
+    {
+        if ($this->layer instanceof \Imagick) {
+            $this->layer->clear();
+            $this->layer->destroy();
+        }
+
+        $this->layer = null;
+    }
+
+    public function __destruct()
+    {
+        $this->clear();
+    }
 }

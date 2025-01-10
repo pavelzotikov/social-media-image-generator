@@ -309,4 +309,17 @@ class Magnetic
 
         unset($layer);
     }
+
+    public function clear(): void
+    {
+        if ($this->im instanceof \Imagick) {
+            $this->im->clear();
+            $this->im->destroy();
+        }
+
+        $this->im = null;
+        $this->layers = null;
+        $this->layers_with_names = null;
+        $this->to_layer = null;
+    }
 }

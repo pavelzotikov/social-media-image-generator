@@ -224,4 +224,18 @@ class Text extends AbstractType
     {
         return $this->current_number_of_lines;
     }
+
+    public function clear(): void
+    {
+        foreach ($this->underline_draws as $draw) {
+            if ($draw instanceof \ImagickDraw) {
+                $draw->clear();
+                $draw->destroy();
+            }
+        }
+
+        $this->underline_draws = [];
+
+        parent::clear();
+    }
 }
