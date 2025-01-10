@@ -2,6 +2,8 @@
 declare(strict_types=1);
 namespace SocialMediaImageGenerator\Types;
 
+use SocialMediaImageGenerator\ImagickResourceLimiter;
+
 class ImageGravityCenter extends Image
 {
     public function getImage(bool $no_resize = true): \Imagick
@@ -17,6 +19,8 @@ class ImageGravityCenter extends Image
 
         if ($this->fill) {
             $layer_colorize = new \Imagick();
+            ImagickResourceLimiter::applyLimits($layer_colorize);
+
             $layer_colorize->newImage($layer->getImageWidth(), $layer->getImageHeight(), $this->fill);
             $layer_colorize->compositeImage($layer, \Imagick::COMPOSITE_COPYOPACITY, 0, 0);
             $layer = $layer_colorize;

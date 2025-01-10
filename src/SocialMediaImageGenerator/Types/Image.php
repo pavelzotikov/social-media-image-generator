@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace SocialMediaImageGenerator\Types;
 
+use SocialMediaImageGenerator\ImagickResourceLimiter;
 use SocialMediaImageGenerator\Properties\Transform;
 
 class Image extends AbstractType
@@ -14,6 +15,10 @@ class Image extends AbstractType
 
     protected $round_corners = 0;
 
+    /**
+     * @throws \ImagickDrawException
+     * @throws \ImagickException
+     */
     public function getImage(bool $no_resize = false): \Imagick
     {
         if ($this->layer) {
@@ -21,6 +26,8 @@ class Image extends AbstractType
         }
 
         $layer = new \Imagick();
+        ImagickResourceLimiter::applyLimits($layer);
+
         $layer->readImage($this->getPath());
         $layer->setImageResolution(300, 300);
         $layer->resampleImage(300, 300, \Imagick::FILTER_LANCZOS, 0);
@@ -31,6 +38,8 @@ class Image extends AbstractType
 
         if ($this->getRoundCorners()) {
             $mask = new \Imagick();
+            ImagickResourceLimiter::applyLimits($mask);
+
             $mask->newImage($this->getWidth(), $this->getHeight(), new \ImagickPixel('transparent'));
 
             $shape = new \ImagickDraw();
@@ -47,6 +56,8 @@ class Image extends AbstractType
 
         if ($this->getFill()) {
             $layer_colorize = new \Imagick();
+            ImagickResourceLimiter::applyLimits($layer_colorize);
+
             $layer_colorize->newImage($layer->getImageWidth(), $layer->getImageHeight(), $this->getFill());
             $layer_colorize->compositeImage($layer, \Imagick::COMPOSITE_COPYOPACITY, 0, 0);
 

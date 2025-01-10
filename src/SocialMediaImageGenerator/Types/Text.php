@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace SocialMediaImageGenerator\Types;
 
+use SocialMediaImageGenerator\ImagickResourceLimiter;
 use SocialMediaImageGenerator\Properties\Font as FontProperties;
 use SocialMediaImageGenerator\Properties\Underline as UnderlineProperties;
 
@@ -78,9 +79,13 @@ class Text extends AbstractType
         return implode("\n", $slice_text_arr) . $symbol;
     }
 
+    /**
+     * @throws \ImagickException
+     */
     private function getMetricsForEachOfLine(string $text, \ImagickDraw $draw): array
     {
         $im = new \Imagick();
+        ImagickResourceLimiter::applyLimits($im);
 
         $info = [];
         foreach (explode("\n", $text) as $string) {
@@ -91,9 +96,13 @@ class Text extends AbstractType
         return $info;
     }
 
+    /**
+     * @throws \ImagickException
+     */
     private function wordwrap(string $text, int $width, \ImagickDraw $draw, int &$number_of_lines = 1): string
     {
         $im = new \Imagick();
+        ImagickResourceLimiter::applyLimits($im);
 
         $final_text = "";
         $words = explode(' ', $text);

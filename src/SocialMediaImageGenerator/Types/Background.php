@@ -2,11 +2,16 @@
 declare(strict_types=1);
 namespace SocialMediaImageGenerator\Types;
 
+use SocialMediaImageGenerator\ImagickResourceLimiter;
+
 class Background extends AbstractType
 {
     protected $color = '#FFFFFF';
     protected $layer;
 
+    /**
+     * @throws \ImagickException
+     */
     public function getImage(): \Imagick
     {
         if ($this->layer) {
@@ -14,6 +19,8 @@ class Background extends AbstractType
         }
 
         $layer = new \Imagick();
+        ImagickResourceLimiter::applyLimits($layer);
+
         $layer->newImage($this->getWidth(), $this->getHeight(), $this->getColor());
 
         $this->layer = $layer;

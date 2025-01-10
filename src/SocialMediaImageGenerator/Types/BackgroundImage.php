@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace SocialMediaImageGenerator\Types;
 
+use SocialMediaImageGenerator\ImagickResourceLimiter;
 use SocialMediaImageGenerator\Properties\Blackout;
 
 class BackgroundImage extends Background
@@ -16,6 +17,8 @@ class BackgroundImage extends Background
         }
 
         $layer = new \Imagick();
+        ImagickResourceLimiter::applyLimits($layer);
+
         $layer->readImage($this->getPath());
 
         $layer->setImageInterpolateMethod(\Imagick::INTERPOLATE_BICUBIC);
@@ -40,6 +43,8 @@ class BackgroundImage extends Background
 
         if ($this->getBlackout()) {
             $blackout_draw = new \Imagick();
+            ImagickResourceLimiter::applyLimits($blackout_draw);
+
             $blackout_draw->newImage($width, $height, new \ImagickPixel($this->getBlackout()->getColor()));
 
             if (method_exists($blackout_draw, 'setImageAlpha')) {

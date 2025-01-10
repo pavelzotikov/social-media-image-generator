@@ -16,9 +16,14 @@ class Generator
 
     private $layers_counter = 0;
 
+    /**
+     * @throws \ImagickException
+     */
     public function __construct(int $width, int $height, string $color)
     {
         $this->image = new \Imagick();
+        ImagickResourceLimiter::applyLimits($this->image);
+
         $this->image->setResolution(300, 300);
         $this->image->newImage($width, $height, $color);
 
@@ -59,6 +64,9 @@ class Generator
         return $this;
     }
 
+    /**
+     * @throws \ImagickException
+     */
     public function addLayer(AbstractType $layer): self
     {
         if ($layer->getName()) {
