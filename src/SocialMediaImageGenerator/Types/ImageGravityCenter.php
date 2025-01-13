@@ -25,6 +25,10 @@ class ImageGravityCenter extends Image
             $layer_colorize->compositeImage($layer, \Imagick::COMPOSITE_COPYOPACITY, 0, 0);
             $layer = $layer_colorize;
 
+            $layer_colorize->clear();
+            $layer_colorize->destroy();
+            unset($im);
+
             unset($layer_colorize);
         }
 

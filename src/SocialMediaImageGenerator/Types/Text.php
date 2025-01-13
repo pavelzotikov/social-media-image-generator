@@ -122,7 +122,10 @@ class Text extends AbstractType
             }
         }
 
+        $im->clear();
+        $im->destroy();
         unset($im);
+
         return $final_text;
     }
 
