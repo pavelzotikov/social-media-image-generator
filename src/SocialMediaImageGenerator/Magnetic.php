@@ -208,6 +208,9 @@ class Magnetic
 
                 $layer_info = $im->queryFontMetrics($layer->getImage(), $layer->getText());
 
+                $im->clear();
+                $im->destroy();
+
                 $layer->setY((int) (
                     $this->to_layer->getY()
                     + (int) ($this->to_layer->getImage()->getImageHeight() / 2)
@@ -222,6 +225,9 @@ class Magnetic
 
                 $to_layer_info = $im->queryFontMetrics($this->to_layer->getImage(), $this->to_layer->getText());
 
+                $im->clear();
+                $im->destroy();
+
                 $layer->setY((int) (
                     $this->to_layer->getY()
                     + (int) (($this->to_layer->getCurrentNumberOfLines() * ($to_layer_info['ascender'] - $to_layer_info['descender']) + $to_layer_info['descender']) / 2)
@@ -234,6 +240,9 @@ class Magnetic
 
                 $layer_info = $im->queryFontMetrics($layer->getImage(), $layer->getText());
                 $to_layer_info = $im->queryFontMetrics($this->to_layer->getImage(), $this->to_layer->getText());
+
+                $im->clear();
+                $im->destroy();
 
                 $layer->setY((int) (
                     $this->to_layer->getY()
@@ -261,6 +270,9 @@ class Magnetic
 
                 $layer_info = $im->queryFontMetrics($layer->getImage(), $layer->getText());
 
+                $im->clear();
+                $im->destroy();
+
                 $layer->setY((int) (
                     $this->to_layer->getY() + (int) $layer_info['ascender'] + (int) $layer->getMagnetic()->getTop()
                 ));
@@ -271,6 +283,9 @@ class Magnetic
                 ImagickResourceLimiter::applyLimits($im);
 
                 $to_layer_info = $im->queryFontMetrics($this->to_layer->getImage(), $this->to_layer->getText());
+
+                $im->clear();
+                $im->destroy();
 
                 $layer->setY((int) (
                     $this->to_layer->getY()
@@ -300,6 +315,9 @@ class Magnetic
 
                 $layer_info = $im->queryFontMetrics($layer->getImage(), $layer->getText());
 
+                $im->clear();
+                $im->destroy();
+
                 $layer->setY((int) (
                     $this->to_layer->getY()
                     + (int) $this->to_layer->getImage()->getImageHeight()
@@ -314,6 +332,9 @@ class Magnetic
 
                 $to_layer_info = $im->queryFontMetrics($this->to_layer->getImage(), $this->to_layer->getText());
 
+                $im->clear();
+                $im->destroy();
+
                 $layer->setY((int) (
                     $this->to_layer->getY()
                     + (int) ($this->to_layer->getCurrentNumberOfLines() * ($to_layer_info['ascender'] - $to_layer_info['descender']) + $to_layer_info['descender'])
@@ -325,6 +346,9 @@ class Magnetic
                 ImagickResourceLimiter::applyLimits($im);
 
                 $to_layer_info = $im->queryFontMetrics($this->to_layer->getImage(), $this->to_layer->getText());
+
+                $im->clear();
+                $im->destroy();
 
                 $layer->setY((int) (
                     $this->to_layer->getY()
