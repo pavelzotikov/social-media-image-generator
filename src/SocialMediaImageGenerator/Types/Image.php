@@ -68,9 +68,6 @@ class Image extends AbstractType
             $layer->destroy();
 
             $layer = $layer_colorize;
-
-            $layer_colorize->clear();
-            $layer_colorize->destroy();
         }
 
         $this->layer = $layer;
