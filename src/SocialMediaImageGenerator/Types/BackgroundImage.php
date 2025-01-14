@@ -20,7 +20,11 @@ class BackgroundImage extends Background
 
         $layer->readImage($this->getPath());
 
-        $layer->setImageInterpolateMethod(\Imagick::INTERPOLATE_BICUBIC);
+        if (defined('Imagick::INTERPOLATE_BICUBIC')) {
+            $layer->setImageInterpolateMethod(\Imagick::INTERPOLATE_BICUBIC);
+        } else {
+            $layer->setImageInterpolateMethod(\Imagick::INTERPOLATE_BILINEAR);
+        }
 
         $height = $this->getHeight();
         $width = $this->getWidth();
