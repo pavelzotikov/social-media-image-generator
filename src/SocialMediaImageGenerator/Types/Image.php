@@ -26,7 +26,6 @@ class Image extends AbstractType
         }
 
         $layer = new \Imagick();
-        ImagickResourceLimiter::applyLimits($layer);
 
         $layer->readImage($this->getPath());
         $layer->setImageResolution(300, 300);
@@ -38,7 +37,6 @@ class Image extends AbstractType
 
         if ($this->getRoundCorners()) {
             $mask = new \Imagick();
-            ImagickResourceLimiter::applyLimits($mask);
 
             $mask->newImage($this->getWidth(), $this->getHeight(), new \ImagickPixel('transparent'));
 
@@ -59,7 +57,6 @@ class Image extends AbstractType
 
         if ($this->getFill()) {
             $layer_colorize = new \Imagick();
-            ImagickResourceLimiter::applyLimits($layer_colorize);
 
             $layer_colorize->newImage($layer->getImageWidth(), $layer->getImageHeight(), $this->getFill());
             $layer_colorize->compositeImage($layer, \Imagick::COMPOSITE_COPYOPACITY, 0, 0);

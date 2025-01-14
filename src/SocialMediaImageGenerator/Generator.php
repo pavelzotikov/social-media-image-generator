@@ -22,7 +22,6 @@ class Generator
     public function __construct(int $width, int $height, string $color)
     {
         $this->image = new \Imagick();
-        ImagickResourceLimiter::applyLimits($this->image);
 
         $this->image->setResolution(300, 300);
         $this->image->newImage($width, $height, $color);

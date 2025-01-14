@@ -19,7 +19,6 @@ class Background extends AbstractType
         }
 
         $layer = new \Imagick();
-        ImagickResourceLimiter::applyLimits($layer);
 
         $layer->newImage($this->getWidth(), $this->getHeight(), $this->getColor());
 

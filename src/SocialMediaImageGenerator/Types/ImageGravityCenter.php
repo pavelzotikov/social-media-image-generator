@@ -19,7 +19,6 @@ class ImageGravityCenter extends Image
 
         if ($this->fill) {
             $layer_colorize = new \Imagick();
-            ImagickResourceLimiter::applyLimits($layer_colorize);
 
             $layer_colorize->newImage($layer->getImageWidth(), $layer->getImageHeight(), $this->fill);
             $layer_colorize->compositeImage($layer, \Imagick::COMPOSITE_COPYOPACITY, 0, 0);

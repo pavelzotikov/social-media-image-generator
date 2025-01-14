@@ -85,7 +85,6 @@ class Text extends AbstractType
     private function getMetricsForEachOfLine(string $text, \ImagickDraw $draw): array
     {
         $im = new \Imagick();
-        ImagickResourceLimiter::applyLimits($im);
 
         $info = [];
         foreach (explode("\n", $text) as $string) {
@@ -102,7 +101,6 @@ class Text extends AbstractType
     private function wordwrap(string $text, int $width, \ImagickDraw $draw, int &$number_of_lines = 1): string
     {
         $im = new \Imagick();
-        ImagickResourceLimiter::applyLimits($im);
 
         $final_text = "";
         $words = explode(' ', $text);

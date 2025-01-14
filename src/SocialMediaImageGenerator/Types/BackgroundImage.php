@@ -17,7 +17,6 @@ class BackgroundImage extends Background
         }
 
         $layer = new \Imagick();
-        ImagickResourceLimiter::applyLimits($layer);
 
         $layer->readImage($this->getPath());
 
@@ -43,7 +42,6 @@ class BackgroundImage extends Background
 
         if ($this->getBlackout()) {
             $blackout_draw = new \Imagick();
-            ImagickResourceLimiter::applyLimits($blackout_draw);
 
             $blackout_draw->newImage($width, $height, new \ImagickPixel($this->getBlackout()->getColor()));
 

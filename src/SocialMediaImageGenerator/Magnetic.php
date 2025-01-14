@@ -21,7 +21,6 @@ class Magnetic
     public function __construct(array &$layers, array &$layers_with_names)
     {
         $this->im = new \Imagick();
-        ImagickResourceLimiter::applyLimits($this->im);
 
         $this->layers = &$layers;
         $this->layers_with_names = &$layers_with_names;
@@ -77,7 +76,6 @@ class Magnetic
             } else {
 
                 /*$im = new \Imagick();
-                ImagickResourceLimiter::applyLimits($im);
                 $layer_info = $im->queryFontMetrics($layer->$this->getImage(), $layer->getText());*/
 
                 $layer->setX(
@@ -94,7 +92,6 @@ class Magnetic
             if ($layer->getImage() instanceof \Imagick) {
 
                 /*$im = new \Imagick();
-                ImagickResourceLimiter::applyLimits($im);
                 $to_layer_info = $im->queryFontMetrics($this->to_layer->getImage(), $this->to_layer->getText());*/
 
                 $layer->setX(
@@ -128,7 +125,6 @@ class Magnetic
         /*if ($layer_image instanceof \ImagickDraw) {
 
             $im = new \Imagick();
-            ImagickResourceLimiter::applyLimits($im);
             $layer_info = $im->queryFontMetrics($layer_image, $layer->getText());
 
             if ($layer->getAlignment() === \Imagick::ALIGN_CENTER) {
@@ -152,7 +148,6 @@ class Magnetic
         /*if ($layer_image instanceof \ImagickDraw) {
 
             $im = new \Imagick();
-            ImagickResourceLimiter::applyLimits($im);
             $layer_info = $im->queryFontMetrics($layer_image, $layer->getText());
 
             if ($layer->getAlignment() === \Imagick::ALIGN_CENTER) {
@@ -204,7 +199,6 @@ class Magnetic
                 ));
             } else {
                 $im = new \Imagick();
-                ImagickResourceLimiter::applyLimits($im);
 
                 $layer_info = $im->queryFontMetrics($layer->getImage(), $layer->getText());
 
@@ -221,7 +215,6 @@ class Magnetic
         } elseif ($this->to_layer->getImage() instanceof \ImagickDraw) {
             if ($layer->getImage() instanceof \Imagick) {
                 $im = new \Imagick();
-                ImagickResourceLimiter::applyLimits($im);
 
                 $to_layer_info = $im->queryFontMetrics($this->to_layer->getImage(), $this->to_layer->getText());
 
@@ -236,7 +229,6 @@ class Magnetic
                 ));
             } else {
                 $im = new \Imagick();
-                ImagickResourceLimiter::applyLimits($im);
 
                 $layer_info = $im->queryFontMetrics($layer->getImage(), $layer->getText());
                 $to_layer_info = $im->queryFontMetrics($this->to_layer->getImage(), $this->to_layer->getText());
@@ -266,7 +258,6 @@ class Magnetic
                 ));
             } elseif ($layer->getImage() instanceof \ImagickDraw) {
                 $im = new \Imagick();
-                ImagickResourceLimiter::applyLimits($im);
 
                 $layer_info = $im->queryFontMetrics($layer->getImage(), $layer->getText());
 
@@ -280,7 +271,6 @@ class Magnetic
         } elseif ($this->to_layer->getImage() instanceof \ImagickDraw) {
             if ($layer->getImage() instanceof \Imagick) {
                 $im = new \Imagick();
-                ImagickResourceLimiter::applyLimits($im);
 
                 $to_layer_info = $im->queryFontMetrics($this->to_layer->getImage(), $this->to_layer->getText());
 
@@ -311,7 +301,6 @@ class Magnetic
                 ));
             } elseif ($layer->getImage() instanceof \ImagickDraw) {
                 $im = new \Imagick();
-                ImagickResourceLimiter::applyLimits($im);
 
                 $layer_info = $im->queryFontMetrics($layer->getImage(), $layer->getText());
 
@@ -328,7 +317,6 @@ class Magnetic
         } elseif ($this->to_layer->getImage() instanceof \ImagickDraw) {
             if ($layer->getImage() instanceof \Imagick) {
                 $im = new \Imagick();
-                ImagickResourceLimiter::applyLimits($im);
 
                 $to_layer_info = $im->queryFontMetrics($this->to_layer->getImage(), $this->to_layer->getText());
 
@@ -343,7 +331,6 @@ class Magnetic
                 ));
             } elseif ($layer->getImage() instanceof \ImagickDraw) {
                 $im = new \Imagick();
-                ImagickResourceLimiter::applyLimits($im);
 
                 $to_layer_info = $im->queryFontMetrics($this->to_layer->getImage(), $this->to_layer->getText());
 
